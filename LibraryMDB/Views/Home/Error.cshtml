@@ -1,0 +1,16 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<div class="page-header">
+    <h1>Something Slipped</h1>
+</div>
+
+<div class="manifesto-card">
+    <p>An unexpected error occurred while processing your request.</p>
+    @if (Model.ShowRequestId)
+    {
+        <p class="version-tag">Request ID: @Model.RequestId</p>
+    }
+</div>

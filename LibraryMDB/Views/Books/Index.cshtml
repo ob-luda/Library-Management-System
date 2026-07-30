@@ -1,0 +1,27 @@
+@model List<Book>
+@{
+    ViewData["Title"] = "Books";
+}
+
+<div class="page-header">
+    <h1>Catalog</h1>
+</div>
+
+<div class="book-grid">
+    @foreach (var book in Model)
+    {
+        <div class="book-card">
+            <span class="call-number">@book.CallNumber</span>
+            <h3>@book.Title</h3>
+            <p class="book-author">@book.Author</p>
+            @if (book.IsAvailable)
+            {
+                <span class="badge badge-available">AVAILABLE</span>
+            }
+            else
+            {
+                <span class="badge badge-borrowed">BORROWED</span>
+            }
+        </div>
+    }
+</div>

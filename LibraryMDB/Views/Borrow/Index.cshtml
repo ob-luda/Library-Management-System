@@ -1,0 +1,34 @@
+@model List<BorrowRecord>
+@{
+    ViewData["Title"] = "Borrow Records";
+}
+
+<div class="page-header">
+    <h1>Borrow Ledger</h1>
+</div>
+
+<div class="ledger-card">
+    <table class="ledger-table">
+        <thead>
+            <tr>
+                <th>BOOK</th>
+                <th>BORROWER</th>
+                <th>BORROWED</th>
+                <th>DUE</th>
+                <th>STATUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in Model)
+            {
+                <tr>
+                    <td>@record.BookTitle</td>
+                    <td>@record.Borrower</td>
+                    <td>@record.BorrowedDate.ToString("MMM dd, yyyy")</td>
+                    <td>@record.DueDate.ToString("MMM dd, yyyy")</td>
+                    <td>@record.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

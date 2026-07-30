@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Library Management System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <nav class="site-nav">
+            <a class="brand" asp-controller="Home" asp-action="Index">📖 Library Management System</a>
+            <div class="nav-links">
+                <a asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-controller="Books" asp-action="Index">Books</a>
+                <a asp-controller="Books" asp-action="Create">Add Book</a>
+                <a asp-controller="Borrow" asp-action="Index">Borrow Records</a>
+                <a asp-controller="Home" asp-action="About">About Us</a>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <form asp-controller="Account" asp-action="Logout" method="post" class="logout-form">
+                        <button type="submit" class="nav-logout">Logout</button>
+                    </form>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Login">Login</a>
+                }
+                <button type="button" class="mode-toggle" id="modeToggle">☀️ Toggle Mode</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="site-main">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <p>Library Management System &middot; A quiet system for a full shelf</p>
+    </footer>
+
+    <script>
+        document.getElementById('modeToggle').addEventListener('click', function () {
+            var html = document.documentElement;
+            var current = html.getAttribute('data-theme');
+            html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+        });
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

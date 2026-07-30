@@ -1,0 +1,35 @@
+@model Book
+@{
+    ViewData["Title"] = "Add Book";
+}
+
+<div class="page-header">
+    <h1>New Entry</h1>
+</div>
+
+<div class="form-card">
+    <div class="form-tag">ACCESSION SLIP</div>
+    <form asp-controller="Books" asp-action="Create" method="post">
+        <div class="form-group">
+            <label asp-for="Title">Title</label>
+            <input asp-for="Title" placeholder="Book title" />
+            <span asp-validation-for="Title" class="field-validation-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Author">Author</label>
+            <input asp-for="Author" placeholder="Author name" />
+            <span asp-validation-for="Author" class="field-validation-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CallNumber">Call Number</label>
+            <input asp-for="CallNumber" placeholder="e.g. 895.6 MUR" />
+            <span asp-validation-for="CallNumber" class="field-validation-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Copies">Copies</label>
+            <input asp-for="Copies" type="number" min="1" value="1" />
+            <span asp-validation-for="Copies" class="field-validation-error"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">File into catalog</button>
+    </form>
+</div>
